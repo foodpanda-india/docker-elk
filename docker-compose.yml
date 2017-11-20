@@ -2,7 +2,7 @@ version: '2'
 
 services:
 
-  elasticsearch:
+  pfm-elk:
     build:
       context: elasticsearch/
       args:
@@ -17,7 +17,7 @@ services:
     networks:
       - elk
 
-  logstash:
+  pfm-logstash:
     build:
       context: logstash/
       args:
@@ -32,9 +32,9 @@ services:
     networks:
       - elk
     depends_on:
-      - elasticsearch
+      - pfm-elk
 
-  kibana:
+  pfm-kibana:
     build:
       context: kibana/
       args:
@@ -46,7 +46,7 @@ services:
     networks:
       - elk
     depends_on:
-      - elasticsearch
+      - pfm-elk
 
 networks:
 
